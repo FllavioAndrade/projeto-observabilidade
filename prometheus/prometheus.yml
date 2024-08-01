@@ -1,0 +1,23 @@
+global:
+  # Define configurações globais para todos os jobs de scraping.
+  scrape_interval: 15s  # Intervalo de coleta de métricas definido para 15 segundos.
+
+rule_files:
+  - rules.yml  # Arquivo de regras para definir alertas e outras regras de Prometheus.
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+       - localhost:9093  # Endpoint do Alertmanager rodando localmente na porta 9093.
+
+scrape_configs:
+  # Configuração do job para monitorar o próprio Prometheus.
+  - job_name: 'prometheus'  # Nome do job.
+    static_configs:
+      - targets: ['localhost:9090']  # Endpoint do Prometheus rodando localmente na porta 9090.
+
+  # Configuração do job para monitorar a sua aplicação.
+  - job_name: 'app.py'  # Nome do job.
+    static_configs:
+      - targets: ['localhost:3001']  # Endpoint da sua aplicação Python que será construída nos próximos passos rodando localmente na porta 3001.
