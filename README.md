@@ -5,7 +5,7 @@ O Projeto original você encontra no Gitlab do [**Professor Patrick J Cardoso**]
 Criar um ambiente de observabilidade usando Prometheus e Grafana para monitorar uma aplicação de exemplo.
 <br>
 ## Technologies Used:
-- Linux (Ubntu based)
+- Linux (Ubuntu based)
 - Python Aplication
 - Prometheus
 - Grafana
@@ -101,7 +101,7 @@ groups:
 ```
 2.3. Acesse ao site **https://webhook.site/** e copie a url que aparece em **Your unique URL** como mostrado abaixo.
 
-![webhook](/o2b/img/webhook.png)
+![webhook](img/webhook.png)
 
 
 2.4. Crie um arquivo chamado **alertmanager.yml** para gerenciar os alertas das aplicações. **Modifique a URL que está na linha 10 para a URL que você copiou no site webhook**
@@ -286,7 +286,7 @@ $ nohup python3 app.py &
 ```
 4.2 Teste a aplicação. Acesse pelo navegador sua aplicação usando a segunte url: http://localhost:3001.
 
-![Aplicação rodando na WEB](/o2b/img/app-python.png)
+![Aplicação rodando na WEB](img/app-python.png)
 
 ### Passo 5: Gerando métricas na aplicação
 Acesse sua aplicação em clique em: **Gerar Erro** e depois em **Calcular Duração**
@@ -306,12 +306,12 @@ $ sudo docker-compose up -d
 ```bash
 $ sudo docker-compose ps
 ```
-![container sendo executado](/o2b/img/container.png)
+![container sendo executado](img/container.png)
 
 ### Passo 7: Acessando o Promethues e verificando as métricas da aplicação
 7.1 Acesse o painel Promethues em seu navegador em http://localhost:9090.
 
-![container sendo executado](/o2b/img/prometheus.png)
+![container sendo executado](img/prometheus.png)
 
 7.2 Acesse o painel Promethues em seu navegador em http://localhost:9090.
 
@@ -321,18 +321,18 @@ $ sudo docker-compose ps
   - Caso o status da aplicação não esteja UP, certifique-se que a aplicação esteja rodando (Item 2.3).
   - Caso ainda não esteja UP ou com outro status, reveja a atividade, pois algum ponto pode ter faltado.
 
-![Adicionando Target](/o2b/img/prometheus-target.png)
+![Adicionando Target](img/prometheus-target.png)
 <br><br>
 7.3 Agora vamos olhar as métricas configuradas em nossa aplicação:
 
 - Métrica de Contagem de Erros (app_errors_total): Esta métrica conta o número total de erros que ocorreram em sua aplicação.
 
-![Consultando erro](/o2b/img/prometheus-grafico-erro.png)
+![Consultando erro](img/prometheus-grafico-erro.png)
 <br><br>
 
 - Métrica de Duração da Função (app_function_duration_seconds): Esta métrica mede o tempo gasto na execução de funções específicas em sua aplicação. Você configurou rótulos para identificar a função específica sendo monitorada.
 
-![consultando tempo de execução](/o2b/img/prometheus-grafico-time.png)
+![consultando tempo de execução](img/prometheus-grafico-time.png)
 
 
 ### Passo 8: Configurando o Grafana
@@ -341,60 +341,67 @@ $ sudo docker-compose ps
 8.2. Faça login com as credenciais padrão (username: admin, password: admin).
 - **OBS: Ao digitar o usuário e a senha, será solicitado que altere a senha padrão para uma de sua preferência.**
   
-![Login Grafana](/o2b/img/grafana-login.png)
+![Login Grafana](img/grafana-login.png)
 <br><br>
 8.3. Configure o Prometheus como uma fonte de dados:
-
-- Clique em **Home** no menu à esquerda.
-Clique em **Connecions** e posteriormente **Data Sources**" e, em seguida, em "Add data source".
-![adicionando prometheus como dados de origem](/o2b/img/grafana-data-source.png)
+- Clique em **Home** no menu à esquerda, **Connecions**,  **Data Sources**" e, em seguida, em **Add data source**.
+![adicionando prometheus como dados de origem](img/grafana-data-source.png)
 
 - Escolha "Prometheus" como o tipo de fonte de dados.
-  ![adicionando prometheus como dados de origem](/o2b/img/grafana-add-data-source1.png)
+  ![adicionando prometheus como dados de origem](img/grafana-add-data-source1.png)
 
 
 - Na seção **Connection**, configure o URL para http://localhost:9090. Depois desça até o fim da página e clique em **Save & Test**
-  ![adicionando prometheus como dados de origem](/o2b/img/grafana-add-data-source2.png)
+  ![adicionando prometheus como dados de origem](img/grafana-add-data-source2.png)
 - **OBS: Após clicar em 'Save & Test' se o endereço do prometheus estiver correto aparecerá a mensagem como mostrado na imagem abaixo.**
-  ![adicionando prometheus como dados de origem](/o2b/img/grafana-add-data-source3.png)
+  
+  ![adicionando prometheus como dados de origem](img/grafana-add-data-source3.png)
 
 
 ### Passo 9: Criando um Painel no Grafana
 9.1. Crie um novo painel clicando em **Home** e escolha **Dashboard**.
-![Criação de Dashboard](/o2b/img/grafana-create-dashboard.png)
+
+![Criação de Dashboard](img/grafana-create-dashboard.png)
 <br>
 
 9.2. Clique em **Create dashboard**
-![Criação de Dashboard](/o2b/img/grafana-create-dashboard1.png)
+
+![Criação de Dashboard](img/grafana-create-dashboard1.png)
 <br>
 
 9.3. Clique em **Add visuialization**
-![Criação de Dashboard](/o2b/img/grafana-create-dashboard2.png)
+
+![Criação de Dashboard](img/grafana-create-dashboard2.png)
 
 9.4. Selecione o Prometheus que você adicionou como fonte de origem
-![Criação de Dashboard](/o2b/img/grafana-create-dashboard3.png)
+
+![Criação de Dashboard](img/grafana-create-dashboard3.png)
 <br>
 
 9.5 Selecione a métrica que gostaria de adicionar ao dashboard na opção de **metric** (app_erros_total), Adicione um título para o painel na opção **Title**, Clique em **Run queries** para gerar o gráfico e clique em **apply**.
 - Adicione quantos métricas desejar ao painel.
-![Criação de Dashboard](/o2b/img/grafana-create-dashboard4.png)
+  
+![Criação de Dashboard](img/grafana-create-dashboard4.png)
 <br>
 
 9.6 Salve o painel clicando em **save dashboard** como mostrado abaixo.
-![Criação de Dashboard](/o2b/img/grafana-create-dashboard5.png)
+
+![Criação de Dashboard](img/grafana-create-dashboard5.png)
 <br>
 
 ### Passo 10: Verificando as mensagens do Alertmanager no Webhook.
 10.1. Acesse o prometheus [http://localhost:9090](http://localhost:9090) e clique **Status** e selecione a opção **Rules** para verificar se a rule está com **State OK**.
-![Verificação da Rule](/o2b/img/alertmanager-ruler0.png)
-![Verificação da Rule](/o2b/img/alertmanager-ruler.png)
+
+![Verificação da Rule](img/alertmanager-ruler0.png)
+![Verificação da Rule](img/alertmanager-ruler.png)
 <br>
 
 10.2. Satisfaça a condição necessária para que o alerta ele seja enviado (**Condição: quantidade de erro maior 5**);
 - Acesse a aplicação python na web pelo navegador [http://localhost:3001](http://localhost:3001)
 - Clique na aba **Gerar Erro** conforme mostra a imagem do passo 4.2.
-- Atualize a página pelo menos 6 vezes para que sega gerado os erros. 
-- Realize o passo 7.3 para consultar a quantidade de errros.
+- Atualize a página pelo menos 6 vezes para que seja gerado os erros. 
+- Realize o passo 7.3 para consultar a quantidade de erros.
 - Acesse ao site Webhook que foi acessado no passo 2.3 e verifique que consta alertas enviados para o webhook como mostrado abaixo.
-![Verificação da Rule](/o2b/img/webhook1.png)
+  
+![Verificação da Rule](img/webhook1.png)
 <br>
