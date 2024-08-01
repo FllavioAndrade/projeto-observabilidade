@@ -1,0 +1,6 @@
+groups:
+ - name: Error greater than 5  # Nome do grupo de regras. Pode ser qualquer nome descritivo.
+   rules:
+   - alert: ErrorGreaterThan5  # Nome do alerta.
+     expr: app_errors_total > 5  # define a condição do alerta. Neste caso, verifica se o total de erros na aplicação é maior que 5.
+     for: 10s  # O tempo que a condição deve ser verdadeira antes que o alerta seja disparado. Aqui, se a condição for verdadeira por 10 segundos, o alerta será gerado.
