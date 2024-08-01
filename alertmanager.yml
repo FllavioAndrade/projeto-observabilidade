@@ -1,0 +1,11 @@
+global:
+  resolve_timeout: 5m  # Tempo para resolver alertas após a condição que os gerou ter sido resolvida.
+
+route:
+  receiver: webhook_receiver  # Define o receptor padrão para todos os alertas.
+  
+receivers:
+  - name: webhook_receiver  # Nome do receptor.
+    webhook_configs:
+      - url: 'https://webhook.site/fad20e35-faaa-4f24-b7ae-bb013810e9cd'  # URL para onde os alertas serão enviados via webhook. (ALTERE A URL)
+        send_resolved: false  # Define se o Alertmanager deve enviar uma notificação quando um alerta for resolvido.
