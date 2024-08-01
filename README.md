@@ -1,5 +1,6 @@
 # Projeto de monitoramento e Observabilidade
-Projeto de conclusão de curso da O2B Academy
+Projeto de conclusão de curso de Monitoramento e Observabilidade da O2B Academy
+<br>
 O Projeto original você encontra no Gitlab do [**Professor Patrick J Cardoso**](https://github.com/patrickjcardoso/desafio_o11y) 
 ## Objetivo do Projeto:
 Criar um ambiente de observabilidade usando Prometheus e Grafana para monitorar uma aplicação de exemplo.
