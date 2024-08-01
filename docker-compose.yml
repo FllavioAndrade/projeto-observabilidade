@@ -1,0 +1,27 @@
+#version: '3'
+services:
+  prometheus:
+    image: prom/prometheus  # Define a imagem do prometheus a ser usada.
+    volumes:
+    - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  # Mapeia o arquivo de configuração do Prometheus do host para o contêiner.
+    - ./rules.yml:/etc/prometheus/rules.yml  # Mapeia o arquivo de regras do Prometheus do host para o contêiner.
+    command:
+    - '--config.file=/etc/prometheus/prometheus.yml'  # Define o comando a ser executado ao iniciar o contêiner.
+    ports:
+    - '9090:9090'  # Mapeia a porta 9090 do contêiner para a porta 9090 do host.
+    network_mode: "host"  # Usa o modo de rede do host, permitindo que o contêiner compartilhe a rede do host.
+
+  grafana:
+    image: grafana/grafana  # Define a imagem do grafana a ser usada.
+    ports:
+    - '3000:3000'  # Mapeia a porta 3000 do contêiner para a porta 3000 do host.
+    network_mode: "host"  # Usa o modo de rede do host, permitindo que o contêiner compartilhe a rede do host.
+  
+  alertmanager:
+    container_name: alertmanager  # Define o nome do contêiner como "alertmanager".
+    image: prom/alertmanager  # Define a imagem do Docker a ser usada para o serviço Alertmanager.
+    volumes:
+    - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml  # Mapeia o arquivo de configuração do Alertmanager do host para o contêiner.
+    ports:
+    - 9093:9093  # Mapeia a porta 9093 do contêiner para a porta 9093 do host.
+    network_mode: "host"  # Usa o modo de rede do host, permitindo que o contêiner compartilhe a rede do host.
